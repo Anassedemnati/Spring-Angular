@@ -8,6 +8,7 @@ import { ListAddressComponent } from './compoonents/list-address/list-address.co
 import { NavbarComponent } from './compoonents/partials/navbar/navbar.component';
 import { PageNotFoundComponent } from './compoonents/partials/page-not-found/page-not-found.component';
 import { LoginComponent } from './compoonents/login/login.component';
+import { AppRoutingModule } from './app-routing.module';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import { LoginComponent } from './compoonents/login/login.component';
     LoginComponent
   ],
   imports: [
-    BrowserModule
+    BrowserModule,
+    AppRoutingModule
   ],
   providers: [],
   bootstrap: [AppComponent]
