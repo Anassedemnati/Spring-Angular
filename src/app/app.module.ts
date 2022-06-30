@@ -9,6 +9,7 @@ import { NavbarComponent } from './compoonents/partials/navbar/navbar.component'
 import { PageNotFoundComponent } from './compoonents/partials/page-not-found/page-not-found.component';
 import { LoginComponent } from './compoonents/login/login.component';
 import { AppRoutingModule } from './app-routing.module';
+import {ReactiveFormsModule} from "@angular/forms";
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import { AppRoutingModule } from './app-routing.module';
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
