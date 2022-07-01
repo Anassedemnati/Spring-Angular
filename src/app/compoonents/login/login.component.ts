@@ -4,6 +4,7 @@ import {AuthService} from "../../services/auth.service";
 import {Login} from "../../models/login";
 import {TokenService} from "../../services/token.service";
 import {Router} from "@angular/router";
+import {AccountService} from "../../services/account.service";
 
 @Component({
   selector: 'app-login',
@@ -13,7 +14,11 @@ import {Router} from "@angular/router";
 export class LoginComponent implements OnInit {
   loginForm!:FormGroup;
 
-  constructor(private authService:AuthService,private tokenService:TokenService,private fb : FormBuilder,private router:Router) { }
+  constructor(private authService:AuthService,
+              private tokenService:TokenService,
+              private fb : FormBuilder,
+              private accountService:AccountService,
+              private router:Router) { }
 
   ngOnInit(): void {
     this.loginForm=this.fb.group({
@@ -28,6 +33,7 @@ export class LoginComponent implements OnInit {
   }
   handelResponse(res:any){
     this.tokenService.handle(res);
+    this.accountService.changeStatus(true);
     this.router.navigateByUrl("/address");
   }
 

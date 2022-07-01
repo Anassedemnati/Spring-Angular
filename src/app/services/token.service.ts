@@ -23,12 +23,15 @@ export class TokenService {
     localStorage.removeItem('token');
     localStorage.removeItem('id');
   }
-  decode(payload:string){
-    return JSON.parse(window.atob(payload))
+  decode(payload:string) {
+    console.log('payload : ', payload);
+    return JSON.parse(atob(payload));
   }
-  payload(token:string){
-    const payload:any= token.split('.'[1])
-    return this.decode(payload)
+
+  payload(token:string) {
+    const payload = token.split('.')[1];
+    console.log('payload : ', payload);
+    return this.decode(payload);
   }
   isValid(){
     const token = this.getToken();
