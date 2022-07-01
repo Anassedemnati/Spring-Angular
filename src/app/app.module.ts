@@ -11,6 +11,8 @@ import { LoginComponent } from './compoonents/login/login.component';
 import { AppRoutingModule } from './app-routing.module';
 import {ReactiveFormsModule} from "@angular/forms";
 
+import {HttpClientModule} from "@angular/common/http";
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -19,12 +21,14 @@ import {ReactiveFormsModule} from "@angular/forms";
     ListAddressComponent,
     NavbarComponent,
     PageNotFoundComponent,
-    LoginComponent
+    LoginComponent,
+
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]
