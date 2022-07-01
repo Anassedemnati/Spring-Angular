@@ -33,17 +33,20 @@ export class TokenService {
     console.log('payload : ', payload);
     return this.decode(payload);
   }
-  isValid(){
+  isValid() {
     const token = this.getToken();
     const id = this.getId();
-      if (token){
-        const payload = this.payload(token);
-        if (payload){
-          return id== payload.id;
-        }
+
+    if (token) {
+
+      const payload = this.payload(token);
+      if (payload) {
+        return id == payload.id;
       }
-      return false;
+    }
+    return false;
   }
+
   getInfos() {
 
     const token = this.getToken();
