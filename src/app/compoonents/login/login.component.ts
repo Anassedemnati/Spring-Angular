@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import {FormControl, FormGroup, Validators} from "@angular/forms";
+import {FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
 import {AuthService} from "../../services/auth.service";
+import {Login} from "../../models/login";
+import {TokenService} from "../../services/token.service";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-login',
@@ -8,17 +11,24 @@ import {AuthService} from "../../services/auth.service";
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
-  loginForm = new FormGroup({
-    email: new FormControl('',[Validators.required,Validators.email]),
-    password: new FormControl('',[Validators.required,Validators.minLength(8),Validators.maxLength(20)])
-  });
-  constructor(private authService:AuthService) { }
+  loginForm!:FormGroup;
+
+  constructor(private authService:AuthService,private tokenService:TokenService,private fb : FormBuilder,private router:Router) { }
 
   ngOnInit(): void {
+    this.loginForm=this.fb.group({
+      email:this.fb.control(null,[Validators.required,Validators.email]),
+      password:this.fb.control(null,[Validators.required,Validators.minLength(8),Validators.maxLength(20)])
+    })
   }
 
   login() {
-    // @ts-ignore
-    this.authService.login(this.loginForm.value).subscribe(res=>console.log(res));
+    let data:Login=this.loginForm.value;
+    this.authService.login(data).subscribe(res=>this.handelResponse(res));
   }
+  handelResponse(res:any){
+    this.tokenService.handle(res);
+    this.router.navigateByUrl("/address");
+  }
+
 }
