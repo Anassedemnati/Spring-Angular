@@ -1,6 +1,8 @@
 import { Injectable } from '@angular/core';
 import {HttpClient} from "@angular/common/http";
 import {environment} from "../../environments/environment";
+import {Observable} from "rxjs";
+import {AddressModel} from "../models/address.model";
 
 
 @Injectable({
@@ -9,8 +11,8 @@ import {environment} from "../../environments/environment";
 export class AddressService {
 
   constructor(private http :HttpClient) { }
-  getAll(){
-    return  this.http.get(`${environment.apiUrl}/addresses`)
+  getAll():Observable<Array<AddressModel>>{
+    return this.http.get<Array<AddressModel>>(`${environment.apiUrl}/addresses`)
   }
 
 }

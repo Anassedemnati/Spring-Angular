@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {AddressService} from "../../services/address.service";
+import {AddressModel} from "../../models/address.model";
+import {observable, Observable} from "rxjs";
 
 @Component({
   selector: 'app-list-address',
@@ -7,16 +9,15 @@ import {AddressService} from "../../services/address.service";
   styleUrls: ['./list-address.component.css']
 })
 export class ListAddressComponent implements OnInit {
-
+  addresses$!: Observable<Array<AddressModel>>;
   constructor(private addressService:AddressService) { }
 
   ngOnInit(): void {
     this.getAllAddresses();
   }
   getAllAddresses(){
-    this.addressService.getAll().subscribe(res=>{
-      console.log(res);
-    })
+    this.addresses$= this.addressService.getAll()
+
   }
 
 }
